@@ -13,6 +13,10 @@ namespace Game_Account_Labwork.Entities
         public int CurrentRating { get; set; }
         public int GamesCount { get; set; }
         
+        public GameAccount(string? userName)
+        {
+            UserName = userName;
+        }
         public void WnGame (string? opponentName, int rating)
         {
             CurrentRating += rating;

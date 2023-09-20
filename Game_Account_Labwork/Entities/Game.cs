@@ -14,7 +14,12 @@ namespace Game_Account_Labwork.Entities
         public string? FirstGamer { get; set; }
         public string? SecondGamer { get; set; }
 
-
+        public Game (string? firstGamer, string? secondGamer, int gameRating)
+        {
+            FirstGamer = firstGamer;
+            SecondGamer = secondGamer;
+            GameRating = gameRating;
+        }
         public void startGame()
         {
 
