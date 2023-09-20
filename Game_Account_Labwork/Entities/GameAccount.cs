@@ -13,5 +13,19 @@ namespace Game_Account_Labwork.Entities
         public int CurrentRating { get; set; }
         public int GamesCount { get; set; }
         
+        public void WnGame (string? opponentName, int rating)
+        {
+
+        }
+
+        public void LoseGame(string? opponentName, int rating)
+        {
+
+        }
+
+        public void GetStats()
+        {
+
+        }
     }
 }
