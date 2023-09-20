@@ -18,12 +18,16 @@ namespace EF_Labwork
         {
             using (ApplicationContext db = new ApplicationContext())
             {
+                db.Database.EnsureDeleted();
                 db.Database.EnsureCreated();
 
-                GameAccount user1 = new GameAccount { UserName = "Tom", CurrentRating = 33, GamesCount = 3 };
-                GameAccount user2 = new GameAccount { UserName = "Alice", CurrentRating = 26, GamesCount = 2 };
+                //GameAccount user1 = new GameAccount { UserName = "Tom", CurrentRating = 33 };
+                //GameAccount user2 = new GameAccount { UserName = "Alice", CurrentRating = 26 };
 
-                db.GameAccounts.AddRange(user1, user2);
+                //Game game1 = new Game { FirstGamer = "Tom", GameRating = 33 };
+                
+                //db.GameAccounts.AddRange(user1, user2);
+                //db.Game.Add(game1);
                 db.SaveChanges();
 
             }

@@ -11,7 +11,8 @@ namespace Game_Account_Labwork
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<GameAccount> GameAccounts => Set<GameAccount>();
+        public DbSet<Game> Game => Set<Game>();
+        public DbSet<GameAccount>GameAccounts => Set<GameAccount>();
         public ApplicationContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

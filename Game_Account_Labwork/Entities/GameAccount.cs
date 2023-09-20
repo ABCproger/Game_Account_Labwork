@@ -15,12 +15,12 @@ namespace Game_Account_Labwork.Entities
         
         public void WnGame (string? opponentName, int rating)
         {
-
+            CurrentRating += rating;
         }
 
         public void LoseGame(string? opponentName, int rating)
         {
-
+            CurrentRating -= rating;
         }
 
         public void GetStats()

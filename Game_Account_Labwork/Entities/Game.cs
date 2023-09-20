@@ -21,10 +21,10 @@ namespace Game_Account_Labwork.Entities
         
         }
 
-        public void setGameRating()
+        public void setGameRating(int gameRating)
         {
 
-            GameRating = -2;
+            GameRating = gameRating;
             if (GameRating < 0)
             {
                 throw new Exception("the rating of this game cannot be less than 0");
