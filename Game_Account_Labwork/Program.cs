@@ -16,26 +16,13 @@ namespace EF_Labwork
     {
         static void Main(string[] args)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                db.Database.EnsureDeleted();
-                db.Database.EnsureCreated();
+            var difGame = new Game("thoisoi", "ChemistryEasy");
+            var difGame2 = new Game("TEST", "TEST2");
+            difGame.startGame();
+            difGame2.startGame();
 
-                GameAccount player1 = new GameAccount("Alice", 100);
-                GameAccount player2 = new GameAccount("Tom", 100);
-                
-                Game game1 = new Game(player1.UserName, player2.UserName);
-                int rating = game1.setGameRating();
+            Game.printResultOfGames();
 
-                player1.WinGame(player2.UserName, rating);
-                player2.LoseGame(player1.UserName, rating);
-                game1.gameResult(player1.UserName);
-
-                db.GameAccounts.AddRange(player1, player2);
-                db.Game.Add(game1);
-                db.SaveChanges();
-
-            }
         }
 
     }
