@@ -21,13 +21,18 @@ namespace EF_Labwork
                 db.Database.EnsureDeleted();
                 db.Database.EnsureCreated();
 
-                //GameAccount user1 = new GameAccount { UserName = "Tom", CurrentRating = 33 };
-                //GameAccount user2 = new GameAccount { UserName = "Alice", CurrentRating = 26 };
-
-                //Game game1 = new Game { FirstGamer = "Tom", GameRating = 33 };
+                GameAccount player1 = new GameAccount("Alice", 100);
+                GameAccount player2 = new GameAccount("Tom", 100);
                 
-                //db.GameAccounts.AddRange(user1, user2);
-                //db.Game.Add(game1);
+                Game game1 = new Game(player1.UserName, player2.UserName);
+                int rating = game1.setGameRating();
+
+                player1.WinGame(player2.UserName, rating);
+                player2.LoseGame(player1.UserName, rating);
+                game1.gameResult(player1.UserName);
+
+                db.GameAccounts.AddRange(player1, player2);
+                db.Game.Add(game1);
                 db.SaveChanges();
 
             }
