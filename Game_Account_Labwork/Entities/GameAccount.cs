@@ -16,6 +16,8 @@ namespace Game_Account_Labwork.Entities
         public GameAccount(string? userName)
         {
             UserName = userName;
+            Console.Write("Please, enter your current rating: ");
+            CurrentRating = int.Parse(Console.ReadLine());
         }
 
         public void WinGame (string? opponentName, int rating)
@@ -40,7 +42,24 @@ namespace Game_Account_Labwork.Entities
 
         public void GetStats()
         {
-
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var game = db.Game.ToList();
+                string? opponentName = "default";
+                
+                foreach (Game u in game)
+                {
+                    if(UserName == u.FirstGamer)
+                    {
+                        opponentName = u.SecondGamer;
+                    }
+                    else
+                    {
+                        opponentName = u.FirstGamer;
+                    }
+                    Console.WriteLine($" Your opponent:{opponentName}, winner: {u.Winner}, Game rating: {u.GameRating}, gameIndex: {u.GameId}");
+                }
+            }
         }
     }
 }

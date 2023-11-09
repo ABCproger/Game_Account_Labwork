@@ -16,13 +16,13 @@ namespace EF_Labwork
     {
         static void Main(string[] args)
         {
-            var difGame = new Game("thoisoi", "ChemistryEasy");
-            var difGame2 = new Game("TEST", "TEST2");
-            difGame.startGame();
-            difGame2.startGame();
+            GameAccount player1 = new GameAccount("thoisoi");
+            GameAccount player2 = new GameAccount("ChemistryEasy");
 
-            Game.printResultOfGames();
+            var difGame = new Game(player1.UserName, player2.UserName);
 
+            difGame.startGame(player1,player2);
+            player1.GetStats();
         }
 
     }

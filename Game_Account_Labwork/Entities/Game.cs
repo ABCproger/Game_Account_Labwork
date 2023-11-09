@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using static Azure.Core.HttpHeader;
 
 namespace Game_Account_Labwork.Entities
 {
@@ -22,23 +21,34 @@ namespace Game_Account_Labwork.Entities
             SecondGamer = secondGamer;
         }
 
-        public void startGame()
+        public void startGame(GameAccount player1, GameAccount player2)
         {
             int rating;
-            GameAccount player1 = new GameAccount(FirstGamer);
-            GameAccount player2 = new GameAccount(SecondGamer);
-
+            Random random = new Random();
             Game gameInfo = new Game(player1.UserName, player2.UserName);
             rating = gameInfo.setGameRating();
 
-            player1.WinGame(player2.UserName, rating);
-            player2.LoseGame(player1.UserName, rating);
-            gameInfo.gameResult(player1.UserName);
+            if (random.Next(0,10) > 5)
+            {
+                player1.WinGame(player2.UserName, rating);
+                player2.LoseGame(player1.UserName, rating);
+                gameInfo.gameResult(player1.UserName);
+            }
+            else
+            {
+                player2.WinGame(player1.UserName, rating);
+                player1.LoseGame(player2.UserName, rating);
+                gameInfo.gameResult(player2.UserName);
+            }
 
             gameInfo.saveToDb(gameInfo, player1, player2);
 
         }
-        public void saveToDb(Game gameInfo, GameAccount player1, GameAccount player2)
+        private void gameResult(string? winner)
+        {
+            Winner = winner;
+        }
+        private void saveToDb(Game gameInfo, GameAccount player1, GameAccount player2)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
@@ -48,19 +58,8 @@ namespace Game_Account_Labwork.Entities
             }
         }
 
-        public static void printResultOfGames()
-        {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var game = db.Game.ToList();
-                Console.WriteLine("game list:");
-                foreach (Game u in game)
-                {
-                    Console.WriteLine($"{u.GameId}.{u.FirstGamer} - {u.SecondGamer} Game rating: {u.GameRating} Winner: {u.Winner}");
-                }
-            }
-        }
-        public int setGameRating()
+
+        private int setGameRating()
         {
             Console.WriteLine("Please, choose rating of this game: ");
             int gameRating = int.Parse(Console.ReadLine());
@@ -73,10 +72,6 @@ namespace Game_Account_Labwork.Entities
 
             return gameRating;
         }
-
-        public void gameResult(string? winner)
-        {
-            Winner = winner;
-        }
+        
     }
 }
