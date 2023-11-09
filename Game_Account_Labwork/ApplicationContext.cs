@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_Account_Labwork
+namespace Game_Account_Labwork.appContext
 {
     public class ApplicationContext : DbContext
     {
         public DbSet<Game> Game => Set<Game>();
         public DbSet<GameAccount>GameAccounts => Set<GameAccount>();
-        public ApplicationContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

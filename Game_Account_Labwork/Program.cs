@@ -1,29 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Game_Account_Labwork;
+using System.ComponentModel.DataAnnotations.Schema;
+using Game_Account_Labwork.appContext;
 using Game_Account_Labwork.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EF_Labwork
 {
+    
 
-
-    internal class Program
+    class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            GameAccount player1 = new GameAccount("thoisoi");
-            GameAccount player2 = new GameAccount("ChemistryEasy");
+            using (var _context = new ApplicationContext())
+            {
 
-            var difGame = new Game(player1.UserName, player2.UserName);
+                GameAccount player1 = new GameAccount { UserName = "Valera", CurrentRating = 1000 };
+                GameAccount player2 = new GameAccount { UserName = "Vova", CurrentRating = 1200 };
 
-            difGame.startGame(player1,player2);
-            player1.GetStats();
+                _context.GameAccounts.Add(player1);
+                _context.GameAccounts.Add(player2);
+                _context.SaveChanges();
+
+  
+                player1.WinGame(player2.UserName, 50);
+                player2.LoseGame(player1.UserName, 50);
+
+                player1.LoseGame(player2.UserName, 30);
+                player2.WinGame(player1.UserName, 30);
+
+                _context.SaveChanges();
+
+                player1.GetStats();
+                player2.GetStats();
+            }
         }
-
     }
 }
