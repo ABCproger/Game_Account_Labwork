@@ -13,6 +13,9 @@ namespace Game_Account_Labwork.appContext
     {
         public DbSet<Game> Game => Set<Game>();
         public DbSet<GameAccount>GameAccounts => Set<GameAccount>();
+        public DbSet<PremiumGameAccount> PremiumGameAccounts => Set<PremiumGameAccount>();
+        public DbSet<StandartGameAccount> StandartGameAccounts => Set<StandartGameAccount>();
+        public DbSet<TrainingGameAccount> TrainingGameAccounts => Set<TrainingGameAccount>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

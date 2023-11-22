@@ -14,10 +14,7 @@ namespace Game_Account_Labwork.Entities
         public int CurrentRating { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
 
-        public int GetGamesCount()
-        {
-            return Games.Count;
-        }
+
         public void WinGame(string opponentName, int rating)
         {
             ValidateRating(rating);
@@ -43,8 +40,7 @@ namespace Game_Account_Labwork.Entities
                 Console.WriteLine($"{game.OpponentName}\t\t{(game.IsWin ? "Win" : "Lose")}\t\t{game.Rating}\t\t{i + 1}");
             }
             
-            int gamesCount = GetGamesCount();
-            Console.WriteLine("GamesCount: " + gamesCount);
+            Console.WriteLine("GamesCount: " + Games.Count);
             Console.WriteLine();
         }
 
