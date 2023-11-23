@@ -16,11 +16,12 @@ namespace EF_Labwork
             using (var _context = new ApplicationContext())
             {
 
-                GameAccount player1 = new GameAccount { UserName = "Valera", CurrentRating = 1000 };
-                GameAccount player2 = new GameAccount { UserName = "Vova", CurrentRating = 1200 };
-
+                GameAccount player1 = new PremiumGameAccount { UserName = "Valera", CurrentRating = 1000 };
+                GameAccount player2 = new TrainingGameAccount { UserName = "Vova", CurrentRating = 1200 };
+                GameAccount player3 = new GameAccount { UserName = "Default", CurrentRating = 100 };
                 _context.GameAccounts.Add(player1);
                 _context.GameAccounts.Add(player2);
+                _context.GameAccounts.Add(player3);
                 _context.SaveChanges();
 
   
@@ -28,12 +29,16 @@ namespace EF_Labwork
                 player2.LoseGame(player1.UserName, 50);
 
                 player1.LoseGame(player2.UserName, 30);
-                player2.WinGame(player1.UserName, 30);
+                player2.WinGame(player1.UserName, 300);
+
+                player3.WinGame(player1.UserName, 30);
+                player3.LoseGame(player1.UserName, 100);
 
                 _context.SaveChanges();
 
                 player1.GetStats();
                 player2.GetStats();
+                player3.GetStats();
             }
         }
     }

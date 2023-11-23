@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Game_Account_Labwork.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20231109182314_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231122094647_create")]
+    partial class create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -7,22 +8,26 @@ using System.Threading.Tasks;
 
 namespace Game_Account_Labwork.Entities
 {
-    public class GameAccount
+    public  class GameAccount
     {
+        [Key]
         public int Id { get; set; }
         public string UserName { get; set; }
         public int CurrentRating { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
-
-
-        public void WinGame(string opponentName, int rating)
+        
+        public virtual int RatingCalculation(int rating)
+        {
+            return rating;
+        }
+        public virtual void WinGame(string opponentName, int rating)
         {
             ValidateRating(rating);
             CurrentRating += rating;
             Games.Add(new Game { OpponentName = opponentName, IsWin = true, Rating = rating });
         }
 
-        public void LoseGame(string opponentName, int rating)
+        public virtual void LoseGame(string opponentName, int rating)
         {
             ValidateRating(rating);
             CurrentRating -= rating;
@@ -44,7 +49,7 @@ namespace Game_Account_Labwork.Entities
             Console.WriteLine();
         }
 
-        private void ValidateRating(int rating)
+         protected void ValidateRating(int rating)
         {
             if (rating < 1)
             {
