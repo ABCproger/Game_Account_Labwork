@@ -24,21 +24,22 @@ namespace EF_Labwork
                 GameAccount standardPlayer = new GameAccount { UserName = "Default", CurrentRating = 100 };
 
                 GameFactory gameFactory = new GameFactory();
-                //var standartGame = gameFactory.CreateStandardGame(trainingPlayer.UserName,premiumPlayer.UserName);
                 var trainingGame = gameFactory.CreateTrainingGame(premiumPlayer.UserName, trainingPlayer.UserName);
-                
-                _context.GameAccounts.Add(premiumPlayer);
-                _context.GameAccounts.Add(trainingPlayer);
-                _context.GameAccounts.Add(standardPlayer);
+                var standardGame = gameFactory.CreateStandardGame(standardPlayer.UserName, premiumPlayer.UserName);
+                _context.GameAccounts.AddRange(premiumPlayer,trainingPlayer,standardPlayer);
 
                 _context.SaveChanges();
                 trainingPlayer.WinGame(trainingGame);
                 premiumPlayer.LoseGame(trainingGame);
+
+                standardPlayer.LoseGame(standardGame);
+                premiumPlayer.WinGame(standardGame);
+
                 _context.SaveChanges();
 
                 premiumPlayer.GetStats();
                 trainingPlayer.GetStats();
-
+                standardPlayer.GetStats();
             }
         }
     }

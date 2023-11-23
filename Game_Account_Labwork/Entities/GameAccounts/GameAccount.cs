@@ -26,7 +26,9 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             ValidateRating(game.Rating);
             CurrentRating += PointsCalculation(game.Rating);
             game.Winner = UserName;
-            Games.Add(game);
+            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, 
+                Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, 
+                GameAccountId = game.GameAccountId });
         }
 
         public virtual void LoseGame(Game game)
@@ -41,7 +43,9 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             {
                 game.Winner = game.FirstPlayer;
             }
-            Games.Add(game);
+            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, 
+                Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, 
+                GameAccountId = game.GameAccountId });
         }
 
         public void GetStats()

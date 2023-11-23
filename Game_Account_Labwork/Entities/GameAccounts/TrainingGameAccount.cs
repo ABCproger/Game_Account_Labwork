@@ -1,4 +1,5 @@
-﻿using Game_Account_Labwork.Entities.Games;
+﻿using Game_Account_Labwork.appContext;
+using Game_Account_Labwork.Entities.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,17 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             {
                 game.Winner = game.FirstPlayer;
             }
-            Games.Add(game);
+            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId });
+
         }
         public override void WinGame(Game game)
         {
+
             ValidateRating(game.Rating);
             CurrentRating = PointsCalculation(game.Rating);
             game.Winner = UserName;
-            Games.Add(game);
+            //Games.Add(game);
+            Games.Add(new Game { FirstPlayer = game.FirstPlayer,SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId});
         }
     }
 }

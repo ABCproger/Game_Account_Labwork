@@ -1,4 +1,5 @@
-﻿using Game_Account_Labwork.Entities.Games;
+﻿using Game_Account_Labwork.appContext;
+using Game_Account_Labwork.Entities.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Game_Account_Labwork.Entities.GameAccounts
         }
         public override void LoseGame(Game game)
         {
+
             const int losePremiumMultiplier = 4;
             ValidateRating(game.Rating);
             CurrentRating -= PointsCalculation(game.Rating) / losePremiumMultiplier;
@@ -28,7 +30,8 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             {
                 game.Winner = game.FirstPlayer;
             }
-            Games.Add(game);
+            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId });
+
         }
     }
 }
