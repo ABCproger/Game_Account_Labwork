@@ -14,7 +14,11 @@ namespace Game_Account_Labwork.appContext
     {
         public DbSet<Game> Game => Set<Game>();
         public DbSet<GameAccount>GameAccounts => Set<GameAccount>();
-
+        public ApplicationContext()
+        {
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-MIR7NIF;Initial Catalog=Test_DB;Integrated Security=True;TrustServerCertificate=True");
