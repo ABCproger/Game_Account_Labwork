@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Game_Account_Labwork.appContext;
 using Game_Account_Labwork.Entities;
+using Game_Account_Labwork.Entities.GameAccounts;
 using Microsoft.EntityFrameworkCore;
 
 namespace EF_Labwork
 {
-    
+
 
     class Program
     {

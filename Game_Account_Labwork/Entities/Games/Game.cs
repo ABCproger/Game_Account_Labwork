@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Game_Account_Labwork.Entities.GameAccounts;
 
-namespace Game_Account_Labwork.Entities
+namespace Game_Account_Labwork.Entities.Games
 {
 
-    public class Game
+    public abstract class Game
     {
         public int Id { get; set; }
         public string OpponentName { get; set; }
@@ -16,6 +17,9 @@ namespace Game_Account_Labwork.Entities
         public int Rating { get; set; }
         public int GameAccountId { get; set; }
         public GameAccount GameAccount { get; set; }
+
+        public abstract int RatingCalculation();
+        
     }
 }
 

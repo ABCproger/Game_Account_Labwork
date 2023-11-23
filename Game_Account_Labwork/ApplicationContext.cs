@@ -1,5 +1,6 @@
 ﻿using EF_Labwork;
-using Game_Account_Labwork.Entities;
+using Game_Account_Labwork.Entities.GameAccounts;
+using Game_Account_Labwork.Entities.Games;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

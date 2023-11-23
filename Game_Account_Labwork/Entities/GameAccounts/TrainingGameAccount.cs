@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Game_Account_Labwork.Entities.Games;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_Account_Labwork.Entities
+namespace Game_Account_Labwork.Entities.GameAccounts
 {
     public class TrainingGameAccount : GameAccount
     {
