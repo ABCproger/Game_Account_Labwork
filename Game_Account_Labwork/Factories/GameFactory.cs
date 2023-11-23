@@ -9,19 +9,21 @@ namespace Game_Account_Labwork.Factories
 {
     public class GameFactory
     {
-        public Game CreateStandardGame()
+        
+
+        public Game CreateStandardGame(string firstPlayer, string secondPlayer)
         {
-            return new StandardGame();
+            return new StandardGame(firstPlayer, secondPlayer);
         }
 
-        public Game CreateTrainingGame()
+        public Game CreateTrainingGame(string firstPlayer, string secondPlayer)
         {
-            return new TrainingGame();
+            return new TrainingGame(firstPlayer, secondPlayer);
         }
 
-        public Game CreateNoRatingGame()
+        public Game CreateSingleRatingGame(string firstPlayer, string secondPlayer)
         {
-            return new NoRatingGame();
+            return new SingleRatingGame(firstPlayer, secondPlayer);
         }
 
     }

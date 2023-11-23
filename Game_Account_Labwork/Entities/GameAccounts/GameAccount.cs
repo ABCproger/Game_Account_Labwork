@@ -17,33 +17,51 @@ namespace Game_Account_Labwork.Entities.GameAccounts
         public int CurrentRating { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
 
-        public virtual int RatingCalculation(int rating)
+        public virtual int PointsCalculation(int rating)
         {
             return rating;
         }
-        public virtual void WinGame(string opponentName, int rating)
+        public virtual void WinGame(Game game)
         {
-            ValidateRating(rating);
-            CurrentRating += rating;
-            Games.Add(new Game { OpponentName = opponentName, IsWin = true, Rating = rating });
+            ValidateRating(game.Rating);
+            CurrentRating += PointsCalculation(game.Rating);
+            game.Winner = UserName;
+            Games.Add(game);
         }
 
-        public virtual void LoseGame(string opponentName, int rating)
+        public virtual void LoseGame(Game game)
         {
-            ValidateRating(rating);
-            CurrentRating -= rating;
-            Games.Add(new Game { OpponentName = opponentName, IsWin = false, Rating = rating });
+            ValidateRating(game.Rating);
+            CurrentRating -= PointsCalculation(game.Rating);
+            if (game.FirstPlayer == UserName)
+            {
+                game.Winner = game.SecondPlayer;
+            }
+            else
+            {
+                game.Winner = game.FirstPlayer;
+            }
+            Games.Add(game);
         }
 
         public void GetStats()
         {
             Console.WriteLine($"Stats for {UserName}:");
-            Console.WriteLine("Opponent\tOutcome\t\tRating\t\tGame Index");
-
+            Console.WriteLine("Opponent\tWinner\t\tRating\t\tGame Index");
+            string opponentName = null;
+            
             for (int i = 0; i < Games.Count; i++)
             {
                 Game game = Games[i];
-                Console.WriteLine($"{game.OpponentName}\t\t{(game.IsWin ? "Win" : "Lose")}\t\t{game.Rating}\t\t{i + 1}");
+                if (game.FirstPlayer == UserName)
+                {
+                    opponentName = game.SecondPlayer;
+                }
+                else
+                {
+                    opponentName = game.FirstPlayer;
+                }
+                Console.WriteLine($"{opponentName}\t\t{(game.Winner)}\t\t{game.Rating}\t\t{i + 1}");
             }
 
             Console.WriteLine("GamesCount: " + Games.Count);

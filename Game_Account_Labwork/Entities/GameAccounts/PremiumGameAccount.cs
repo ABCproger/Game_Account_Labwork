@@ -10,17 +10,25 @@ namespace Game_Account_Labwork.Entities.GameAccounts
     public class PremiumGameAccount : GameAccount
     {
 
-        public override int RatingCalculation(int rating)
+        public override int PointsCalculation(int rating)
         {
             const int premiumMultipier = 2;
             return rating * premiumMultipier;
         }
-        public override void LoseGame(string opponentName, int rating)
+        public override void LoseGame(Game game)
         {
-           const int losePremiumMultiplier = 4;
-            ValidateRating(rating);
-            CurrentRating -= rating / losePremiumMultiplier;
-            Games.Add(new Game { OpponentName = opponentName, IsWin = false, Rating = rating });
+            const int losePremiumMultiplier = 4;
+            ValidateRating(game.Rating);
+            CurrentRating -= PointsCalculation(game.Rating) / losePremiumMultiplier;
+            if (game.FirstPlayer == UserName)
+            {
+                game.Winner = game.SecondPlayer;
+            }
+            else
+            {
+                game.Winner = game.FirstPlayer;
+            }
+            Games.Add(game);
         }
     }
 }

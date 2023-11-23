@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Game_Account_Labwork.appContext;
 using Game_Account_Labwork.Entities;
 using Game_Account_Labwork.Entities.GameAccounts;
+using Game_Account_Labwork.Entities.Games;
+using Game_Account_Labwork.Factories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EF_Labwork
@@ -17,29 +19,27 @@ namespace EF_Labwork
             using (var _context = new ApplicationContext())
             {
 
-                GameAccount player1 = new PremiumGameAccount { UserName = "Valera", CurrentRating = 1000 };
-                GameAccount player2 = new TrainingGameAccount { UserName = "Vova", CurrentRating = 1200 };
-                GameAccount player3 = new GameAccount { UserName = "Default", CurrentRating = 100 };
-                _context.GameAccounts.Add(player1);
-                _context.GameAccounts.Add(player2);
-                _context.GameAccounts.Add(player3);
-                _context.SaveChanges();
+                GameAccount premiumPlayer = new PremiumGameAccount { UserName = "Valera", CurrentRating = 1000 };
+                GameAccount trainingPlayer = new TrainingGameAccount { UserName = "Vova", CurrentRating = 1200 };
+                //GameAccount standardPlayer = new GameAccount { UserName = "Default", CurrentRating = 100 };
 
-  
-                player1.WinGame(player2.UserName, 50);
-                player2.LoseGame(player1.UserName, 50);
-
-                player1.LoseGame(player2.UserName, 30);
-                player2.WinGame(player1.UserName, 300);
-
-                player3.WinGame(player1.UserName, 30);
-                player3.LoseGame(player1.UserName, 100);
+                GameFactory gameFactory = new GameFactory();
+                //var standartGame = gameFactory.CreateStandardGame(standardPlayer.UserName,trainingPlayer.UserName);
+                //var TrainingGame = gameFactory.CreateTrainingGame(standardPlayer.UserName, trainingPlayer.UserName);
+                var trainingGame = gameFactory.CreateTrainingGame(premiumPlayer.UserName, trainingPlayer.UserName);
+                _context.GameAccounts.Add(premiumPlayer);
+                _context.GameAccounts.Add(trainingPlayer);
+                //_context.GameAccounts.Add(standardPlayer);
 
                 _context.SaveChanges();
+                premiumPlayer.LoseGame(trainingGame);
+                //trainingPlayer.WinGame(TrainingGame);
+                //standardPlayer.LoseGame(TrainingGame);
+                _context.SaveChanges();
 
-                player1.GetStats();
-                player2.GetStats();
-                player3.GetStats();
+                premiumPlayer.GetStats();
+                trainingPlayer.GetStats();
+                //standardPlayer.GetStats();
             }
         }
     }

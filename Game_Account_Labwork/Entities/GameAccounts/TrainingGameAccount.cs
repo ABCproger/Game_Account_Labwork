@@ -9,19 +9,30 @@ namespace Game_Account_Labwork.Entities.GameAccounts
 {
     public class TrainingGameAccount : GameAccount
     {
-        public override int RatingCalculation(int rating)
+        public override int PointsCalculation(int rating)
         {
-            return base.RatingCalculation(rating);
+            return 0;
         }
-        public override void LoseGame(string opponentName, int rating)
+        public override void LoseGame(Game game)
         {
-            ValidateRating(rating);
-            Games.Add(new Game { OpponentName = opponentName, IsWin = false, Rating = rating });
+            ValidateRating(game.Rating);
+            CurrentRating -= PointsCalculation(game.Rating);
+            if (game.FirstPlayer == UserName)
+            {
+                game.Winner = game.SecondPlayer;
+            }
+            else
+            {
+                game.Winner = game.FirstPlayer;
+            }
+            Games.Add(game);
         }
-        public override void WinGame(string opponentName, int rating)
+        public override void WinGame(Game game)
         {
-            ValidateRating(rating);
-            Games.Add(new Game { OpponentName = opponentName, IsWin = true, Rating = rating });
+            ValidateRating(game.Rating);
+            CurrentRating = PointsCalculation(game.Rating);
+            game.Winner = UserName;
+            Games.Add(game);
         }
     }
 }

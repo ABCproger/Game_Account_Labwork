@@ -19,5 +19,6 @@ namespace Game_Account_Labwork.appContext
         {
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-MIR7NIF;Initial Catalog=Test_DB;Integrated Security=True;TrustServerCertificate=True");
         }
+
     }
 }

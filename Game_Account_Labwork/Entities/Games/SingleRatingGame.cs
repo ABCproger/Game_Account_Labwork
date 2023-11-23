@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Game_Account_Labwork.Entities.Games
 {
     [Table("Games")]
-    public class TrainingGame : Game
+    public class SingleRatingGame : Game
     {
-        public TrainingGame(string firstPlayer, string secondPlayer)
+        public SingleRatingGame(string firstPlayer, string secondPlayer)
         {
             Rating = RatingCalculation();
             FirstPlayer = firstPlayer;
@@ -18,7 +18,7 @@ namespace Game_Account_Labwork.Entities.Games
         }
         public override int RatingCalculation()
         {
-            return 1;
+            throw new NotImplementedException();
         }
     }
 }
