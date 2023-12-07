@@ -15,6 +15,7 @@ namespace Game_Account_Labwork.Entities.Games
             Rating = RatingCalculation();
             FirstPlayer = firstPlayer;
             SecondPlayer = secondPlayer;
+            Winner = "Winner not undefined";
         }
         public override int RatingCalculation()
         {

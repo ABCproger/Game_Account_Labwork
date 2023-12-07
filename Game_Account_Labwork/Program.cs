@@ -27,14 +27,14 @@ namespace EF_Labwork
                 var trainingPlayer = gameAccountService.CreateTrainingAccount("2test2test", 1200);
                 //var standardPlayer = gameAccountService.CreateStandardAccount("Defaultplayer test", 100);
 
-                var trainingGame = gameService.CreateTrainingGame(premiumPlayer.UserName, trainingPlayer.UserName);
+                var trainingGame = gameService.CreateTrainingGame(premiumPlayer, trainingPlayer);
                 //var standardGame = gameService.CreateStandardGame(standardPlayer.UserName, premiumPlayer.UserName);
 
 
-                var gameResult1 = trainingPlayer.WinGame(trainingGame);
-                var gameResult2 = premiumPlayer.LoseGame(trainingGame);
-                gameService.SaveGameResults(gameResult1);
-                gameService.SaveGameResults(gameResult2);
+                //var gameResult1 = trainingPlayer.WinGame(trainingGame);
+                //var gameResult2 = premiumPlayer.LoseGame(trainingGame);
+                //gameService.SaveGameResults(gameResult1);
+                //gameService.SaveGameResults(gameResult2);
 
                 //var gameResult3 = standardPlayer.LoseGame(standardGame);
                 //var gameResult4 = premiumPlayer.WinGame(standardGame);

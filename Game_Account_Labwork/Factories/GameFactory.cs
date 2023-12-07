@@ -1,4 +1,5 @@
-﻿using Game_Account_Labwork.Entities.Games;
+﻿using Game_Account_Labwork.Entities.GameAccounts;
+using Game_Account_Labwork.Entities.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,25 @@ namespace Game_Account_Labwork.Factories
     {
         
 
-        public Game CreateStandardGame(string firstPlayer, string secondPlayer)
+        public List<Game> CreateStandardGame(GameAccount gameAccount1, GameAccount gameAccount2)
         {
-            return new StandardGame(firstPlayer, secondPlayer);
+            return new List<Game>
+            {
+                new StandardGame(gameAccount1.UserName, gameAccount2.UserName)
+            };
         }
 
-        public Game CreateTrainingGame(string firstPlayer, string secondPlayer)
+        public List<Game> CreateTrainingGame(GameAccount gameAccount1, GameAccount gameAccount2)
         {
-            return new TrainingGame(firstPlayer, secondPlayer);
+            return new List<Game>
+            {
+                new TrainingGame(gameAccount1.UserName, gameAccount2.UserName)
+            };
         }
 
-        public Game CreateSingleRatingGame(string firstPlayer, string secondPlayer)
+        public Game CreateSingleRatingGame(GameAccount gameAccount1, GameAccount gameAccount2)
         {
-            return new SingleRatingGame(firstPlayer, secondPlayer);
+            return new SingleRatingGame(gameAccount1.UserName, gameAccount2.UserName);
         }
 
     }

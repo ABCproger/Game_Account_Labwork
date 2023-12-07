@@ -1,4 +1,5 @@
-﻿using Game_Account_Labwork.Entities.Games;
+﻿using Game_Account_Labwork.Entities.GameAccounts;
+using Game_Account_Labwork.Entities.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Game_Account_Labwork.Intefaces
 {
     public interface IGameService
     {
-        Game CreatePremiumAccount(string player1Username, string player2Username);
-        Game CreateStandardGame(string player1Username, string player2Username);
-        Game CreateTrainingGame(string player1Username, string player2Username);
-        void SaveGameResults(Game game);
+        
+        List<Game> CreateStandardGame(GameAccount gameAccount1, GameAccount gameAccount2);
+        List<Game> CreateTrainingGame(GameAccount gameAccount1, GameAccount gameAccount2);
+        void SaveGameResults(List<Game> game);
     }
 
 }
