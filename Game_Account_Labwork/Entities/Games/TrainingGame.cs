@@ -10,12 +10,13 @@ namespace Game_Account_Labwork.Entities.Games
     [Table("Games")]
     public class TrainingGame : Game
     {
-        public TrainingGame(string firstPlayer, string secondPlayer)
+        public TrainingGame(string firstPlayer, string secondPlayer, int gameAccountId)
         {
             Rating = RatingCalculation();
             FirstPlayer = firstPlayer;
             SecondPlayer = secondPlayer;
             Winner = "Winner not undefined";
+            GameAccountId = gameAccountId;
         }
         public override int RatingCalculation()
         {

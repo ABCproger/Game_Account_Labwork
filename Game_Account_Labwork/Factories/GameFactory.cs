@@ -16,7 +16,8 @@ namespace Game_Account_Labwork.Factories
         {
             return new List<Game>
             {
-                new StandardGame(gameAccount1.UserName, gameAccount2.UserName)
+                new StandardGame(gameAccount1.UserName, gameAccount2.UserName, gameAccount1.Id),
+                new StandardGame(gameAccount1.UserName, gameAccount2.UserName, gameAccount2.Id)
             };
         }
 
@@ -24,7 +25,8 @@ namespace Game_Account_Labwork.Factories
         {
             return new List<Game>
             {
-                new TrainingGame(gameAccount1.UserName, gameAccount2.UserName)
+                new TrainingGame(gameAccount1.UserName, gameAccount2.UserName, gameAccount1.Id),
+                new TrainingGame(gameAccount1.UserName, gameAccount2.UserName, gameAccount2.Id)
             };
         }
 

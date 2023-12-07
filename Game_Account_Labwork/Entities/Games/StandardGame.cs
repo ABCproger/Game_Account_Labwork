@@ -11,13 +11,13 @@ namespace Game_Account_Labwork.Entities.Games
     public class StandardGame : Game
     {
 
-        public StandardGame(string firstPlayer, string secondPlayer)
+        public StandardGame(string firstPlayer, string secondPlayer,int gameAccountId)
         {
             Rating = RatingCalculation();
             FirstPlayer = firstPlayer;
             SecondPlayer = secondPlayer;
             Winner = "Winner not undefined";
-           // GameAccountId = gameAccountId;
+            GameAccountId = gameAccountId;
         }
         public override int RatingCalculation()
         {

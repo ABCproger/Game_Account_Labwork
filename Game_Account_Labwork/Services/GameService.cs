@@ -27,9 +27,9 @@ namespace Game_Account_Labwork.Services
             GameFactory gameFactory = new GameFactory();
             var games = gameFactory.CreateStandardGame(gameAccount1, gameAccount2);
 
-            _gameRepository.AddGames(games);
+            //_gameRepository.AddGames(games);
 
-            _gameRepository.Save();
+            //_gameRepository.Save();
 
             return games;
         }
@@ -38,14 +38,14 @@ namespace Game_Account_Labwork.Services
         {
             GameFactory gameFactory = new GameFactory();
             var game = gameFactory.CreateTrainingGame(gameAccount1, gameAccount2);
-            _gameRepository.AddGames(game);
-            _gameRepository.Save();
+            //_gameRepository.AddGames(game);
+            //_gameRepository.Save();
 
             return game;
         }
-        public void SaveGameResults(List<Game> game)
+        public void SaveGameResults(Game game)
         {
-            _gameRepository.AddGames(game);
+            _gameRepository.AddGame(game);
             _gameRepository.Save();
         }
 

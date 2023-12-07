@@ -10,7 +10,7 @@ namespace Game_Account_Labwork.Intefaces
 {
     public interface IGameRepository
     {
-        void AddGames(List<Game> games);
+        void AddGame(Game game);
         void Save();
 
     }

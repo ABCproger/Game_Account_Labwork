@@ -18,12 +18,11 @@ namespace Game_Account_Labwork.Repositories
             _context = context;
         }
 
-        public void AddGames(List<Game> games)
+        public void AddGame(Game game)
         {
-            foreach (var game in games)
-            {
+
                 _context.Game.Add(game);
-            }
+            
         }
         public void Save()
         {

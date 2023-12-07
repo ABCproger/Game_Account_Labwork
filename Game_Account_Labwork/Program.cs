@@ -31,10 +31,10 @@ namespace EF_Labwork
                 //var standardGame = gameService.CreateStandardGame(standardPlayer.UserName, premiumPlayer.UserName);
 
 
-                //var gameResult1 = trainingPlayer.WinGame(trainingGame);
-                //var gameResult2 = premiumPlayer.LoseGame(trainingGame);
-                //gameService.SaveGameResults(gameResult1);
-                //gameService.SaveGameResults(gameResult2);
+                var gameResult1 = trainingPlayer.WinGame(trainingGame[0]);
+                var gameResult2 = premiumPlayer.LoseGame(trainingGame[1]);
+                gameService.SaveGameResults(gameResult1);
+                gameService.SaveGameResults(gameResult2);
 
                 //var gameResult3 = standardPlayer.LoseGame(standardGame);
                 //var gameResult4 = premiumPlayer.WinGame(standardGame);

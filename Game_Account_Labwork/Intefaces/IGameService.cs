@@ -13,7 +13,7 @@ namespace Game_Account_Labwork.Intefaces
         
         List<Game> CreateStandardGame(GameAccount gameAccount1, GameAccount gameAccount2);
         List<Game> CreateTrainingGame(GameAccount gameAccount1, GameAccount gameAccount2);
-        void SaveGameResults(List<Game> game);
+        void SaveGameResults(Game game);
     }
 
 }
