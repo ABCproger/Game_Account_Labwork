@@ -44,6 +44,12 @@ namespace EF_Labwork
 
                 premiumPlayer.GetStats();
                 trainingPlayer.GetStats();
+                var gameAccountsList = gameAccountService.GetAllGameAccounts();
+                foreach(var account in gameAccountsList)
+                {
+                    Console.WriteLine($"{account.Id} {account.UserName}  {account.CurrentRating}");
+                }
+                Console.WriteLine($"Total count of gameAccounts: {gameAccountsList.Count}");
                 //standardPlayer.GetStats();
             }
         }

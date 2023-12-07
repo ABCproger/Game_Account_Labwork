@@ -13,12 +13,10 @@ namespace Game_Account_Labwork.Services
 {
     public class GameAccountService : IGameAccountService
     {
-        //private readonly IGameAccountService _gameAccountService;
         private readonly IGameAccountRepository _gameAccountRepository;
         public GameAccountService(ApplicationContext context)
         {
             _gameAccountRepository = new GameAccountRepository(context);
-           // _gameAccountService = new GameAccountService(context);
         }
 
         public GameAccount CreatePremiumAccount(string userName, int currentRating)
