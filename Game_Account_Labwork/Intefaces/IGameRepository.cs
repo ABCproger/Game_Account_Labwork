@@ -10,8 +10,12 @@ namespace Game_Account_Labwork.Intefaces
 {
     public interface IGameRepository
     {
+        List<Game> GetAllGames();
+        List<Game> GetAllGamesByGameAccountId(int gameAccountId);
         void AddGame(Game game);
         void Save();
+        Game UpdateGame(Game game);
+        void DeleteGame(int gameAccountId);
 
     }
 }

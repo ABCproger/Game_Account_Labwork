@@ -20,13 +20,47 @@ namespace Game_Account_Labwork.Repositories
 
         public void AddGame(Game game)
         {
+            _context.Game.Add(game);
+        }
 
-                _context.Game.Add(game);
-            
+        public void DeleteGame(int gameId)
+        {
+            var game = _context.Game.Find(gameId);
+            if (game != null)
+            {
+                _context.Game.Remove(game);
+            }
+        }
+
+        public List<Game> GetAllGames()
+        {
+           return _context.Game.ToList();
+        }
+        public List<Game> GetAllGamesByGameAccountId(int gameAccountId)
+        {
+            return _context.Game
+                .Where(game => game.GameAccountId == gameAccountId)
+                .ToList();
         }
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public Game UpdateGame(Game updatedGame)
+        {
+            var existingGame = _context.Game.Find(updatedGame.Id);
+
+            if (existingGame != null)
+            {
+                existingGame.FirstPlayer = updatedGame.FirstPlayer;
+                existingGame.SecondPlayer = updatedGame.SecondPlayer;
+                existingGame.Winner = updatedGame.Winner;
+                existingGame.Rating = updatedGame.Rating;
+                existingGame.GameAccountId = updatedGame.GameAccountId;
+            }
+
+            return existingGame;
         }
     }
 }

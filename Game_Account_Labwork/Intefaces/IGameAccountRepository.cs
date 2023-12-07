@@ -12,5 +12,8 @@ namespace Game_Account_Labwork.Intefaces
         void Save();
         void Add(GameAccount gameAccount);
         List<GameAccount> GetAll();
+        GameAccount GetAccountById(int gameAccountId);
+        GameAccount Update(GameAccount game);
+        void Delete(int gameAccountId);
     }
 }

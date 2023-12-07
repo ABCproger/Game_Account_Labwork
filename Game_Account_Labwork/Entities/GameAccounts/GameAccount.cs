@@ -18,6 +18,7 @@ namespace Game_Account_Labwork.Entities.GameAccounts
         public string UserName { get; set; }
         public int CurrentRating { get; set; }
         public List<Game> Games { get; set; } 
+
         public GameAccount(string userName, int currentRating)
         {
             UserName = userName;
@@ -90,7 +91,7 @@ namespace Game_Account_Labwork.Entities.GameAccounts
 
         public void GetStats()
         {
-
+            
             Console.WriteLine($"Stats for {UserName}:");
             Console.WriteLine("Opponent\tWinner\t\tRating\t\tGame Index");
             string opponentName = null;

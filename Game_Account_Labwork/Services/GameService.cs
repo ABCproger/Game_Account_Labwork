@@ -43,6 +43,12 @@ namespace Game_Account_Labwork.Services
 
             return game;
         }
+
+        public List<Game> GetAllGames()
+        {
+            return _gameRepository.GetAllGames();
+        }
+
         public void SaveGameResults(Game game)
         {
             _gameRepository.AddGame(game);
