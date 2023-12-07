@@ -1,4 +1,6 @@
 ﻿using Game_Account_Labwork.Entities.Games;
+using Game_Account_Labwork.Intefaces;
+using Game_Account_Labwork.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,22 +18,41 @@ namespace Game_Account_Labwork.Entities.GameAccounts
         public string UserName { get; set; }
         public int CurrentRating { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
+        public GameAccount(string userName, int currentRating)
+        {
+            UserName = userName;
+            CurrentRating = currentRating;
+
+        }
 
         public virtual int PointsCalculation(int rating)
         {
             return rating;
         }
-        public virtual void WinGame(Game game)
+        public virtual Game WinGame(Game game)
         {
             ValidateRating(game.Rating);
             CurrentRating += PointsCalculation(game.Rating);
             game.Winner = UserName;
-            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, 
-                Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, 
-                GameAccountId = game.GameAccountId });
+
+            //Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, 
+            //    Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, 
+            //    GameAccountId = game.GameAccountId });
+            var gameResult = new Game
+            {
+                FirstPlayer = game.FirstPlayer,
+                SecondPlayer = game.SecondPlayer,
+                Rating = game.Rating,
+                Winner = game.Winner,
+                Id = game.Id,
+                GameAccount = game.GameAccount,
+                GameAccountId = game.GameAccountId
+
+            };
+            return gameResult;
         }
 
-        public virtual void LoseGame(Game game)
+        public virtual Game LoseGame(Game game)
         {
             ValidateRating(game.Rating);
             CurrentRating -= PointsCalculation(game.Rating);
@@ -43,9 +64,28 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             {
                 game.Winner = game.FirstPlayer;
             }
-            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, 
-                Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, 
-                GameAccountId = game.GameAccountId });
+            //Games.Add(new Game
+            //{
+            //    FirstPlayer = game.FirstPlayer,
+            //    SecondPlayer = game.SecondPlayer,
+            //    Rating = game.Rating,
+            //    Winner = game.Winner,
+            //    Id = game.Id,
+            //    GameAccount = game.GameAccount,
+            //    GameAccountId = game.GameAccountId
+            //});
+            var gameResult = new Game
+            {
+                FirstPlayer = game.FirstPlayer,
+                SecondPlayer = game.SecondPlayer,
+                Rating = game.Rating,
+                Winner = game.Winner,
+                Id = game.Id,
+                GameAccount = game.GameAccount,
+                GameAccountId = game.GameAccountId
+
+            };
+            return gameResult;
         }
 
         public void GetStats()
@@ -53,7 +93,7 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             Console.WriteLine($"Stats for {UserName}:");
             Console.WriteLine("Opponent\tWinner\t\tRating\t\tGame Index");
             string opponentName = null;
-            
+
             for (int i = 0; i < Games.Count; i++)
             {
                 Game game = Games[i];

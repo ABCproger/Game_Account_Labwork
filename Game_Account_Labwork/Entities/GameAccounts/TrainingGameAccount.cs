@@ -1,5 +1,6 @@
 ﻿using Game_Account_Labwork.appContext;
 using Game_Account_Labwork.Entities.Games;
+using Game_Account_Labwork.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,15 @@ namespace Game_Account_Labwork.Entities.GameAccounts
 {
     public class TrainingGameAccount : GameAccount
     {
+        public TrainingGameAccount(string userName , int currentRating) : base(userName, currentRating)
+        {
+
+        }
         public override int PointsCalculation(int rating)
         {
             return 0;
         }
-        public override void LoseGame(Game game)
+        public override Game LoseGame(Game game)
         {
             ValidateRating(game.Rating);
             CurrentRating -= PointsCalculation(game.Rating);
@@ -26,17 +31,40 @@ namespace Game_Account_Labwork.Entities.GameAccounts
             {
                 game.Winner = game.FirstPlayer;
             }
-            Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId });
+            //Games.Add(new Game { FirstPlayer = game.FirstPlayer, SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId });
+            var gameResult = new Game
+            {
+                FirstPlayer = game.FirstPlayer,
+                SecondPlayer = game.SecondPlayer,
+                Rating = game.Rating,
+                Winner = game.Winner,
+                Id = game.Id,
+                GameAccount = game.GameAccount,
+                GameAccountId = game.GameAccountId
 
+            };
+            return gameResult;
         }
-        public override void WinGame(Game game)
+        public override Game WinGame(Game game)
         {
 
             ValidateRating(game.Rating);
             CurrentRating = PointsCalculation(game.Rating);
             game.Winner = UserName;
             //Games.Add(game);
-            Games.Add(new Game { FirstPlayer = game.FirstPlayer,SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId});
+            //Games.Add(new Game { FirstPlayer = game.FirstPlayer,SecondPlayer = game.SecondPlayer, Rating = game.Rating, Winner = game.Winner, Id = game.Id, GameAccount = game.GameAccount, GameAccountId = game.GameAccountId});
+            var gameResult = new Game
+            {
+                FirstPlayer = game.FirstPlayer,
+                SecondPlayer = game.SecondPlayer,
+                Rating = game.Rating,
+                Winner = game.Winner,
+                Id = game.Id,
+                GameAccount = game.GameAccount,
+                GameAccountId = game.GameAccountId
+
+            };
+            return gameResult;
         }
     }
 }

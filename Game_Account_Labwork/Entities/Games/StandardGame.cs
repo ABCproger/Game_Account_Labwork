@@ -10,6 +10,7 @@ namespace Game_Account_Labwork.Entities.Games
     [Table("Games")]
     public class StandardGame : Game
     {
+
         public StandardGame(string firstPlayer, string secondPlayer)
         {
             Rating = RatingCalculation();
