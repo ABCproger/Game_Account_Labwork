@@ -118,12 +118,11 @@ namespace Game_Account_Labwork.Entities.Managers
 
                 if (int.TryParse(input, out int playerId))
                 {
-                    var playerInfo = _gameAccountService.GetGameAccountById(playerId);
+                    var player = _gameAccountService.GetGameAccountById(playerId);
 
-                    if (playerInfo != null)
+                    if (player != null)
                     {
-                        GameAccount playerAccount = new GameAccount(playerInfo.UserName, playerInfo.CurrentRating);
-                        players.Add(playerAccount);
+                        players.Add(player);
                     }
                     else
                     {
