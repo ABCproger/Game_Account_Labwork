@@ -45,10 +45,8 @@ namespace Game_Account_Labwork.Entities.GameAccounts
                 SecondPlayer = game.SecondPlayer,
                 Rating = game.Rating,
                 Winner = game.Winner,
-                Id = game.Id,
-                GameAccount = game.GameAccount,
-                GameAccountId = game.GameAccountId
-
+                GameAccount = this, // Встановіть асоціацію правильно
+                GameAccountId = this.Id // Встановіть зовнішній ключ
             };
             return gameResult;
         }
@@ -81,10 +79,8 @@ namespace Game_Account_Labwork.Entities.GameAccounts
                 SecondPlayer = game.SecondPlayer,
                 Rating = game.Rating,
                 Winner = game.Winner,
-                Id = game.Id,
-                GameAccount = game.GameAccount,
-                GameAccountId = game.GameAccountId
-
+                GameAccount = this, // Встановіть асоціацію правильно
+                GameAccountId = this.Id // Встановіть зовнішній ключ
             };
             return gameResult;
         }
